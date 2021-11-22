@@ -1,0 +1,32 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  box-shadow: 0.1em 0.1em 0.5em 0.1em rgba($color: #000000, $alpha: 0.1);
+}
+
+.form {
+  width: 100%;
+  border: none;
+  padding: 1em;
+  border-radius: 0.3em;
+  box-shadow: 0.1em, 0.1em 0.5em 0.1em rgba($color: #000000, $alpha: 0.1);
+}
+.formRow {
+  padding: 0.1em;
+  display: block;
+  width: 100%;
+}
+
+input,
+label {
+  display: block;
+  margin: 0.1em;
+  width: 95%;
+}
+
+.footer {
+  display: flex;
+}

@@ -1,0 +1,27 @@
+@import "../classes";
+@import "../config";
+
+.productCard {
+  width: 17vw;
+  margin: 0.5em;
+  position: relative;
+  border: 0.1em solid rgba(128, 128, 128, 0.075);
+  background-color: white;
+  border-radius: 0.1em;
+  transition: 0.2s all;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0.1em 0.1em 0.7em 0.2em rgba(0, 0, 0, 0.248);
+  }
+}
+
+.productCard img,
+a {
+  width: 100%;
+  border-radius: 0.1em 0.1em 0 0;
+  height: 10em;
+}
+
+.productImage {
+  width: 100%;
+}

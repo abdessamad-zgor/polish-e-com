@@ -1,0 +1,17 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  background-color: rgb(253, 253, 253);
+  color: rgb(12, 12, 12);
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.1em;
+  margin: 0.2em;
+  box-shadow: 0.1em 0.2em 0.5em rgba(0, 0, 0, 0.2);
+  transition: 0.2s ease;
+  &:focus {
+    box-shadow: 0.1em 0.2em 0.5em rgba(0, 0, 0, 0.5);
+  }
+}

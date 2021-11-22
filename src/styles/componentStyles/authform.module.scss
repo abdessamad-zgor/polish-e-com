@@ -1,0 +1,50 @@
+@import "../classes";
+@import "../config";
+
+.form {
+  width: 95%;
+}
+
+.formRow {
+  margin: 0.1em;
+  display:block label,
+  input {
+    display: block;
+  }
+  input {
+    width: 100%;
+    padding: 0.5em;
+    border-radius: 0.1em;
+    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(53, 53, 53, 0.096);
+    border: 0.1em solid rgba(119, 119, 119, 0.205);
+    transition: 0.2s all;
+
+    &:focus {
+      border: 0.1em solid rgba(255, 166, 0, 0.233);
+      padding: 0.5em;
+      border-radius: 0.1em;
+      box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(53, 53, 53, 0.13);
+    }
+  }
+}
+
+.authType {
+  padding: 0.5em;
+  border: none;
+  border-radius: 0;
+  background-color: inherit;
+
+  width: 50%;
+  text-align: center;
+}
+.authTypeActive {
+  @extend .authType;
+  border-bottom: 0.1em solid $primary-color;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}

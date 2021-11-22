@@ -1,0 +1,16 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+}
+
+.card {
+  border: 0.1em solid rgba(128, 128, 128, 0.082);
+  box-shadow: 0.1em 0.1em 0.3em 0.1em rgba(0, 0, 0, 0.082);
+  margin: 0.5em;
+  width: 98%;
+  padding: 0.5em;
+  border-radius: 0.2em;
+}

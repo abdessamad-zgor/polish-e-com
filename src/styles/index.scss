@@ -1,0 +1,24 @@
+@import "./classes";
+@import "./config";
+@import "./utils";
+@import "./animations";
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+body {
+  font-family: "Courier New", Courier, monospace;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.root {
+  height: 100vh;
+  width: 100vw;
+}

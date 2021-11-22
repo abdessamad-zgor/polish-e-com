@@ -1,0 +1,26 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+.root {
+  width: 100%;
+  border-bottom: 0.1em solid rgba(128, 128, 128, 0.116);
+}
+
+.navList {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  flex: 1;
+  padding: 0.5em;
+  border-radius: 0.12em;
+  text-align: center;
+  cursor: pointer;
+  @extend .grey, .alt-font;
+  transition: 0.2s all;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.089);
+  }
+}

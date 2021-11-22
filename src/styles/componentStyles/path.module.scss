@@ -1,0 +1,23 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  padding: 1em 2em;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  border-bottom: 0.1em solid rgba(128, 128, 128, 0.1);
+  border-top: 0.1em solid rgba(128, 128, 128, 0.1);
+}
+
+.item {
+  color: rgba(128, 128, 128, 0.74);
+  font-family: $dfl-font;
+}
+
+.itemLast {
+  color: $primary-color;
+  text-decoration: underline;
+  font-family: $dfl-font;
+}

@@ -1,0 +1,30 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.cartItem {
+  width: 95%;
+  display: flex;
+  padding: 0.7em;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.89);
+  box-shadow: 0.1em 0.1em 0.2em 0.1em rgba(14, 14, 14, 0.048);
+
+  border-radius: 0.3em;
+  margin-block: 0.2em;
+  align-items: center;
+}
+
+.productImg {
+  width: 20%;
+  height: 20%;
+}
+
+.productInfo {
+  padding-inline: 0.5em;
+  flex: 1;
+}
+
+.quantityDiv {
+  @extend .align-center-flex;
+}

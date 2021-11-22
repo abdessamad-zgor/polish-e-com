@@ -1,0 +1,18 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+@import "../utils";
+
+.root {
+  width: 100%;
+}
+
+.container {
+  padding: 2em 4em;
+  background-color: white;
+}
+
+.nothing {
+  padding: 5em;
+  text-align: center;
+}

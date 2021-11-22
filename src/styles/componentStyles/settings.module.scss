@@ -1,0 +1,37 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  padding: 3em 5em;
+}
+
+.container {
+  border: 0.1em solid rgba(128, 128, 128, 0.089);
+  box-shadow: 0.1em 0.1em 0.5em 0.1em rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  padding: 1em;
+  background-color: white;
+  @extend .stretch;
+}
+
+.avatar {
+  width: 30%;
+}
+
+.avatarImg {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+}
+.address {
+  width: 70%;
+}
+
+.title {
+  text-decoration: underline;
+  @extend .dfl-font;
+  padding: 0.5em;
+  color: $primary-color;
+}

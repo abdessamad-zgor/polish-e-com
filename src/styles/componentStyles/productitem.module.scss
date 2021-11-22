@@ -1,0 +1,27 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  margin: 0.5em;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  border: 0.1em solid rgba(128, 128, 128, 0.193);
+  box-shadow: 0.1em 0.1em 0.5em 0.1em rgba(0, 0, 0, 0.075);
+  @extend .align-center-flex;
+}
+
+.image {
+  width: 10%;
+  img {
+    width: 100%;
+  }
+}
+
+.title {
+  width: 100%;
+  padding: 0.5em;
+  @extend .dfl-font;
+  text-align: left;
+}

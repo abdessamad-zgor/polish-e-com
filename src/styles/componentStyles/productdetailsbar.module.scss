@@ -1,0 +1,43 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.productDetailsbarActive {
+  display: flex;
+  padding: 0.3em;
+  top: 0;
+  align-items: center;
+  position: fixed;
+  z-index: 1100;
+  width: 100%;
+  background-color: rgb(252, 247, 238);
+  animation: slideBar 0.5s 1 ease-out forwards;
+}
+
+.productImg {
+  width: 20%;
+  height: 20%;
+  border-radius: 0.5em;
+  img {
+    width: 100%;
+    border-radius: 0.5em;
+  }
+  @media (max-width: 800px) {
+    width: 45%;
+    height: 45%;
+  }
+}
+
+.productInfo {
+  padding: 1em;
+  flex: 1;
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+}
+.productActions {
+  @extend .align-flex-column;
+  padding: 1em;
+}

@@ -1,0 +1,53 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.drawerUser {
+  position: absolute;
+  background-color: rgb(255, 248, 240);
+  text-align: center;
+  width: 25%;
+  z-index: 1;
+  top: 5em;
+  right: 0.5em;
+  border: none;
+  border-radius: 2em;
+  box-shadow: 0.1em 0.1em 0.3em 0.1em rgba(7, 7, 7, 0.137);
+  @extend .align-flex-column;
+}
+.userIcon {
+  width: 25%;
+  display: inline-block;
+  padding: 0.3em;
+}
+
+.list {
+  text-align: left;
+  list-style: none;
+  width: 100%;
+}
+.entry {
+  padding: 0.4em;
+  width: 100%;
+  font-family: $alt-font;
+  color: rgb(0, 0, 0);
+  font-size: 0.85em;
+  font-weight: 300;
+  cursor: pointer;
+  transition: 0.2s all;
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.11);
+  }
+}
+.header {
+  display: block;
+}
+
+.userName {
+  display: inline-block;
+  padding-bottom: 0.4em;
+  color: rgba(0, 0, 0, 0.836);
+}
+// .userInfo {
+//   @extend .align-center-flex;
+// }

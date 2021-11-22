@@ -1,0 +1,11 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+.appbar {
+  width: 100%;
+  @extend .align-center-flex;
+  padding-inline: 3em;
+  padding-block: 0.7em;
+
+  z-index: 1000;
+}

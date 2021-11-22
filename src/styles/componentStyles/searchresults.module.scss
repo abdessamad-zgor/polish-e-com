@@ -1,0 +1,23 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+//absolute how to implement
+.root {
+  width: 100%;
+  position: absolute;
+  top: 100%;
+  z-index: 100000;
+  background-color: rgb(255, 248, 240);
+}
+.active {
+  display: flex;
+  background-color: rgb(255, 248, 240);
+  border-radius: 0.5em;
+  border: 0.1em solid rgba(128, 128, 128, 0.082);
+  padding-bottom: 0.5em;
+}
+.dormant {
+  display: none;
+  pointer-events: none;
+}

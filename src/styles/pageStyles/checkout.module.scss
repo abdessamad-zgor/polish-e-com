@@ -1,0 +1,12 @@
+@import "../classes";
+@import "../config";
+@import "../utils";
+
+.root {
+  width: 100%;
+  background-color: rgba(245, 245, 245, 0.39);
+}
+
+.container {
+  padding: 2em 3em;
+}

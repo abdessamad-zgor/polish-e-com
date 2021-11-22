@@ -1,0 +1,66 @@
+@import "../classes";
+@import "../config";
+
+.reviewsec {
+  width: 100%;
+  border: 0.1em solid rgba(128, 128, 128, 0.13);
+
+  border-radius: 1em;
+}
+
+.avatar {
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 50%;
+  background-color: aquamarine;
+}
+
+.review {
+  padding: 0.5em;
+  @extend .align-center-flex;
+}
+
+.reviewContent {
+  padding-top: 1em;
+  text-align: start;
+  flex: 1;
+}
+
+.inputSec {
+  padding: 0.5em;
+  border-top: 0.1em solid rgba(128, 128, 128, 0.13);
+  @extend .align-center-flex;
+}
+.inputBx {
+  width: 100%;
+  padding-top: 0.5em;
+  padding-right: 1em;
+  input[type="text"] {
+    color: rgba(0, 0, 0, 0.781);
+  }
+  button {
+    float: right;
+    margin-right: 1em;
+    margin-top: 0.8em;
+    background-color: rgba(142, 255, 77, 0.548);
+    border: none;
+    border-radius: 0.5em;
+    padding-block: 0.5em;
+    padding-inline: 1.2em;
+    text-transform: uppercase;
+    transition: 0.1s ease-in;
+    &:hover {
+      background-color: rgba(115, 207, 61, 0.548);
+    }
+    &:active {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  border: none;
+  padding: 0.3em;
+  border-bottom: 0.1em solid rgba(128, 128, 128, 0.24);
+}

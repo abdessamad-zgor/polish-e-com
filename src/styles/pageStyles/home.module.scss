@@ -1,0 +1,16 @@
+@import "../classes";
+@import "../config";
+@import "../utils";
+
+.home {
+  width: 100%;
+  position: relative;
+  background-color: rgba(245, 245, 245, 0.39);
+}
+
+.topItems {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

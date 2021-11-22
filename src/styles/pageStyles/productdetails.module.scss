@@ -1,0 +1,21 @@
+@import "../classes";
+@import "../config";
+@import "../utils";
+.root {
+  background-color: rgba(245, 245, 245, 0.39);
+  width: 100%;
+}
+
+.productDesc {
+  @extend .align-center-flex;
+
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+    half {
+      width: 100%;
+    }
+  }
+}
+.desc {
+  padding-top: 0.5em;
+}

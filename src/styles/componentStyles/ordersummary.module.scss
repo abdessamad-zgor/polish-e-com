@@ -1,0 +1,14 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+}
+
+.container {
+  border: 0.1em solid $primary-color;
+  border-radius: 0.3em;
+  margin: 0.7em;
+  box-shadow: 0.1em 0.1em 0.3em 0.1em rgba(128, 128, 128, 0.467);
+}

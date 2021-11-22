@@ -1,0 +1,30 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.searchbar {
+  flex: 1;
+  width: 100%;
+  @extend .align-center-flex;
+  animation: expand 0.5s 1 ease-out forwards;
+  position: relative;
+  height: 4em;
+  overflow: visible;
+  z-index: 1;
+}
+
+.input {
+  width: 100%;
+}
+
+.inputElement {
+  width: 100%;
+  border: 0.1em solid rgba(128, 128, 128, 0.13);
+  padding: 0.5em;
+  border-radius: 1em;
+  transition: 0.2s all;
+  &:focus {
+    border: 0.1em solid rgba(255, 140, 0, 0.356);
+    box-shadow: 0.1em 0.1em 0.1em rgba(255, 140, 0, 0.096);
+  }
+}
