@@ -4,7 +4,8 @@
 
 .root {
   width: 100%;
-  box-shadow: 0.1em 0.1em 0.5em 0.1em rgba($color: #000000, $alpha: 0.1);
+  border: 0.1em solid rgba(128, 128, 128, 0.123);
+  border-radius: 1em;
 }
 
 .form {
@@ -20,13 +21,61 @@
   width: 100%;
 }
 
-input,
-label {
-  display: block;
-  margin: 0.1em;
-  width: 95%;
+.label {
+  @extend .dfl-font;
+  font-size: 0.8em;
+  color: rgb(172, 171, 171);
 }
 
 .footer {
   display: flex;
+  padding-inline: 2em;
+  padding-block: 0.5em;
+}
+
+.input {
+  border: 0.1em solid #00000017;
+  display: block;
+  margin: 0.1em;
+  width: 95%;
+  padding: 0.5em;
+  background-color: rgba(243, 196, 141, 0.089);
+  border-radius: 1em;
+  transition: 0.2s all;
+  &:focus {
+    border: 0.1em solid rgba(253, 168, 70, 0.727);
+  }
+}
+
+.btn {
+  background-color: rgba(255, 153, 37, 0.967);
+  border-radius: 0.5em;
+  padding: 0.5em 1.5em;
+  text-align: center;
+  margin-inline: 0.7em;
+  box-shadow: none;
+  text-transform: uppercase;
+  border: none;
+  text-decoration: none;
+  color: white;
+  @extend .dfl-font;
+  &:hover {
+    color: rgba(255, 153, 37, 0.967);
+    border: 0.1em solid rgba(255, 153, 37, 0.967);
+    background-color: rgba(255, 153, 37, 0);
+  }
+}
+
+.btnAlt {
+  background-color: rgba(255, 153, 37, 0);
+  border-radius: 0.5em;
+  margin-inline: 0.7em;
+  padding: 0.5em 1.5em;
+  text-align: center;
+  box-shadow: none;
+  text-transform: uppercase;
+  border: 0.1em solid rgba(255, 153, 37, 0.967);
+  text-decoration: none;
+  color: rgba(255, 153, 37, 0.967);
+  @extend .dfl-font;
 }

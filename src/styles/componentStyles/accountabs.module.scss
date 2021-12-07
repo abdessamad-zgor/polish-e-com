@@ -1,6 +1,7 @@
 @import "../classes";
 @import "../config";
 @import "../animations";
+
 .root {
   width: 100%;
   border-bottom: 0.1em solid rgba(128, 128, 128, 0.116);
@@ -18,9 +19,15 @@
   border-radius: 0.12em;
   text-align: center;
   cursor: pointer;
-  @extend .grey, .alt-font;
+  @extend .grey, .dfl-font;
   transition: 0.2s all;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.089);
+    background-color: rgba(253, 168, 70, 0.727);
+    color: white;
   }
+}
+
+.activeTab {
+  background-color: rgba(253, 168, 70, 0.727);
+  color: white;
 }

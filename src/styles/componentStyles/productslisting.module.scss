@@ -1,0 +1,26 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  background-color: white;
+  border: 0.1em solid rgba(128, 128, 128, 0.055);
+  border-radius: 0.5em;
+  padding: 2em;
+}
+
+.container {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.collection {
+  width: 100%;
+  background-color: white;
+  border: 0.1em solid rgba(128, 128, 128, 0.055);
+  border-radius: 0.5em;
+}

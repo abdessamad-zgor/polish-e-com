@@ -65,20 +65,21 @@ function Drawer({ name, active, anchor }) {
                   <div className="grow"></div>
                   <h3 className="alt-font grey thin ">{totalPrice()} DH</h3>
                 </div>
+
+                <Link className={styles.btn} to="/checkout">
+                  Checkout
+                </Link>
               </div>
             ) : (
               <div className="pa-1">
                 <p className="grey text-align pa-1">No Items Here</p>
                 <div className="half ma">
-                  <button className="alt-btn pa-3">Go Shopping</button>
+                  <Link to="/products" className="alt-btn pa-3">
+                    Go Shopping
+                  </Link>
                 </div>
               </div>
             )}
-            <div className={styles.footer}>
-              <Link className={styles.checkout} to="/checkout">
-                Checkout
-              </Link>
-            </div>
           </div>
         )}
       </div>

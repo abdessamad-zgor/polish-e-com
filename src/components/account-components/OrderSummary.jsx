@@ -11,8 +11,12 @@ function OrderSummary({ getTotal, cartState }) {
             {cartState.products.map((product, key) => (
               <CartItem product={product} key={key} />
             ))}
+            <div className={styles.footer}>
+              <h2 className="display-font">Total:</h2>
+              <div className="grow"></div>
+              <h3 className="alt-font grey thin ">{getTotal()} MAD</h3>
+            </div>
           </div>
-          <div className={styles.footer}>Total: {getTotal()} MAD</div>
         </>
       ) : (
         <div className={styles.container}>

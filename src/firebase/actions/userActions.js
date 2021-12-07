@@ -93,4 +93,35 @@ const updateUserInfo = async (uid, payload) => {
     });
 };
 
-export { facebookLogin, googleLogin, putOrder, checkUser, updateUserInfo };
+const updateWishlist = async (uid, payload) => {
+  let userRef = db.collection("users").doc(uid);
+
+  return userRef
+    .collection("wishlist")
+    .doc("wishlist")
+    .set(
+      {
+        wishlist: payload,
+      },
+      {
+        merge: true,
+      }
+    )
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+
+const getOrders = async (uid) => {
+  return db.collection("users").doc(uid).collection("orders").get();
+};
+
+export {
+  facebookLogin,
+  googleLogin,
+  putOrder,
+  checkUser,
+  updateUserInfo,
+  updateWishlist,
+  getOrders,
+};

@@ -11,18 +11,19 @@
   z-index: 100;
   left: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.37);
+  background-color: rgba(0, 0, 0, 0.1);
   @extend .align-center-flex;
 }
 
 .modal {
-  border-radius: 0.2em;
-  width: 80%;
-  border: 0.1em solid rgba(0, 0, 0, 0.247);
+  border-radius: 1em;
+  width: 50%;
+  border: 0.1em solid rgba(0, 0, 0, 0.192);
   padding: 0.3em;
-  background-color: whitesmoke;
+  background-color: white;
 }
 
 .header {
   padding: 0.3em;
+  width: 70%;
 }

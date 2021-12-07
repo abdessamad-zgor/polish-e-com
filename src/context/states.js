@@ -14,7 +14,12 @@ let productsInit = {
   inView: {},
   all: [],
   results: [],
-  filter: [],
+  filter: {
+    categories: [],
+    title: "",
+    price: 0,
+    attributes: [],
+  },
 };
 
 export { cartInit, userInit, productsInit };

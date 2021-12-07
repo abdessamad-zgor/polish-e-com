@@ -9,10 +9,11 @@ export const reviewSectionLogic = () => {
   const [review, setReview] = useState({ stars: 0, reviewText: "" });
 
   const { products, productDispatch } = useProducts();
+  const { userState } = useUser();
 
   useEffect(async () => {
     let reviews = await getProductReviewsGetter(products.inView.id);
-    console.log(reviews);
+
     productDispatch({ type: "ADD_PRODUCT_REVIEWS", payload: reviews });
   }, [products.inView.id]);
 
@@ -20,10 +21,24 @@ export const reviewSectionLogic = () => {
     setReview({ ...review, [e.target.name]: e.target.value });
   };
 
-  const addProductReviews = async (id, payload) => {
-    const review = await addProductReviewsGetter(id, payload);
-    productDispatch({ type: "UPDATE_PRODUCT_REVIEW", payload: review });
+  const setRating = (rate) => {
+    setReview({ ...review, stars: rate });
   };
 
-  return { review, products, onChangeReview, addProductReviews };
+  const addProductReviews = async () => {
+    const reviewNew = await addProductReviewsGetter(
+      { author: userState.info, review },
+      products.inView.id
+    );
+    productDispatch({ type: "UPDATE_PRODUCT_REVIEW", payload: reviewNew[0] });
+  };
+
+  return {
+    review,
+    products,
+    onChangeReview,
+    addProductReviews,
+    userState,
+    setRating,
+  };
 };

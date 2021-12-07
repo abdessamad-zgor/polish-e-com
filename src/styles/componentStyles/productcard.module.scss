@@ -1,10 +1,14 @@
 @import "../classes";
 @import "../config";
 
-.productCard {
+.root {
   width: 17vw;
   margin: 0.5em;
   position: relative;
+}
+
+.medium {
+  width: 100%;
   border: 0.1em solid rgba(128, 128, 128, 0.075);
   background-color: white;
   border-radius: 0.1em;
@@ -15,13 +19,56 @@
   }
 }
 
-.productCard img,
-a {
-  width: 100%;
-  border-radius: 0.1em 0.1em 0 0;
-  height: 10em;
-}
-
 .productImage {
   width: 100%;
+  img {
+    width: 100%;
+    border-radius: 0.1em 0.1em 0 0;
+    height: 10em;
+  }
+}
+
+.small {
+  width: 100%;
+  border-radius: 00.5em;
+  height: 13em;
+  position: relative;
+  border: 0.1em solid rgba(128, 128, 128, 0.075);
+  transition: 0.4s all;
+  .details {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(-95%);
+    overflow-y: hidden;
+    transition: 0.5s all;
+    opacity: 0;
+  }
+  &:hover {
+    .details {
+      position: absolute;
+      bottom: 0;
+      background-image: linear-gradient(
+        150deg,
+        white,
+        rgba(255, 255, 255, 0.535)
+      );
+      width: 100%;
+      transition: 0.5s all;
+      transform: translateY(0%);
+      overflow-y: hidden;
+      opacity: 1;
+    }
+
+    transform: scale(1.05);
+    box-shadow: 0.1em 0.1em 0.7em 0.2em rgba(0, 0, 0, 0.248);
+  }
+  .productImage {
+    width: 100%;
+    img {
+      width: 100%;
+      border-radius: 0.5em;
+      height: 13em;
+    }
+  }
 }

@@ -1,10 +1,11 @@
 import { useCart, useProducts, useUser } from "../../context";
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/componentStyles/productdisplay.module";
+import { updateWishlistGetter } from "../../lib/getters/userGetters";
 
 export const productDisplayLogic = function () {
   const { cartDispatch } = useCart();
-  const { userDispatch } = useUser();
+  const { userState, userDispatch } = useUser();
   const { products } = useProducts();
   const [imageInView, setImageInView] = useState("");
   const product = products.inView;
@@ -18,7 +19,8 @@ export const productDisplayLogic = function () {
   }, []);
 
   const imageStyles = {
-    border: "0.1em solid rgba(168, 167, 166, 0.59)",
+    border: "0.1em solid rgba(168, 167, 166, 0.2)",
+    borderRadius: "0.5em",
     padding: "0.1em",
     backgroundColor: "white",
     backgroundImage: `url(${imageInView})`,
@@ -31,8 +33,13 @@ export const productDisplayLogic = function () {
     cartDispatch({ type: "ADD_TO_CART", payload: product });
   };
 
-  const addToWishlist = () => {
+  const addToWishlist = async () => {
     userDispatch({ type: "ADD_TO_WISHLIST", payload: product });
+    await updateWishlistGetter(
+      userState.loggedIn,
+      userState.info.uid,
+      userState.wishlist
+    );
   };
 
   return {

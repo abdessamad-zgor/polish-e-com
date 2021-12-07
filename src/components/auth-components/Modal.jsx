@@ -24,11 +24,11 @@ function Modal() {
                 <Crossicon />
               </div>
             </div>
-            <div className="container align-center-flex">
-              <div className="half">
+            <div className="container flex-column">
+              <div className="container">
                 <AuthForm />
               </div>
-              <div className="half">
+              <div className="container">
                 <div className="align-flex-column">
                   <p className="grey alt-font small thin">or:</p>
                   <FacebookLogin />

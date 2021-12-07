@@ -5,3 +5,11 @@
 .root {
   width: 100%;
 }
+
+.cartItems {
+  width: 100%;
+  padding: 1em 4em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

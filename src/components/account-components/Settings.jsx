@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "../../styles/componentStyles/settings.module";
 import ShippingAddress from "./ShippingAddress";
-import { shippingAddressLG } from "../logic/shippingAddress.lg";
+import { useLogic } from "../logic/settings.lg";
 
 function Settings() {
-  const { cartState, userState, userDispatch, address, OnChangeValue } =
-    shippingAddressLG();
+  const { userState } = useLogic();
   return (
     <div className={styles.root}>
       <div className={styles.container}>
@@ -18,13 +17,7 @@ function Settings() {
         </div>
         <div className={styles.address}>
           <h2 className={styles.title}>Shipping Address</h2>
-          <ShippingAddress
-            cartState={cartState}
-            userState={userState}
-            address={address}
-            userDispatch={userDispatch}
-            OnChangeValue={OnChangeValue}
-          />
+          <ShippingAddress />
         </div>
       </div>
     </div>

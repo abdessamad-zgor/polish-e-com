@@ -2,6 +2,7 @@ import {
   getAllProducts,
   getProductReviews,
   addProductReviews,
+  getAllCategories,
 } from "../../firebase/actions";
 
 const getAllProductsGetter = async () => {
@@ -16,7 +17,7 @@ const getProductReviewsGetter = async (id) => {
   }
 };
 
-const addProductReviewsGetter = async (id, payload) => {
+const addProductReviewsGetter = async (payload, id) => {
   try {
     const review = await addProductReviews(payload.author, payload.review, id);
     return review;
@@ -25,8 +26,13 @@ const addProductReviewsGetter = async (id, payload) => {
   }
 };
 
+const getAllCategoriesGetter = async () => {
+  return getAllCategories();
+};
+
 export {
   getAllProductsGetter,
   getProductReviewsGetter,
   addProductReviewsGetter,
+  getAllCategoriesGetter,
 };

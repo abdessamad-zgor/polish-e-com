@@ -1,19 +1,35 @@
 import { useCart, useUser } from "../../context";
 import { useState } from "react";
+import { putOrderGetter } from "../../lib/getters/userGetters";
 
 export const shippingAddressLG = () => {
   const { userState, userDispatch } = useUser();
   const { cartState } = useCart();
-  const putOrderClick = () => {
-    userDispatch({
-      type: "PUT_ORDER",
-      payload: {
-        cart: cartState,
-        address: address,
-        user: userState.info,
-      },
-    });
+
+  //put Up order
+  const putOrderClick = async () => {
+    try {
+      await putOrderGetter(userState.info.uid, {
+        forClient: {
+          fullName: userState.info.fullName,
+          email: userState.info.email,
+        },
+        products: cartState,
+        toAddress: address,
+      });
+      userDispatch({
+        type: "PUT_ORDER",
+        payload: {
+          cart: cartState,
+          address: address,
+          user: userState.info,
+        },
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
+
   //set defaults
   const [address, setAddress] = useState({
     fullName: userState.info.fullName || "",
@@ -32,16 +48,19 @@ export const shippingAddressLG = () => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
 
+  //save address
+  const saveAddress = () => {
+    userDispatch({ type: "SAVE_ADDRESS", payload: address });
+  };
+
   //get cities array
 
   //add validator rules
 
   return {
-    userState,
-    userDispatch,
     address,
     OnChangeValue,
-    cartState,
     putOrderClick,
+    saveAddress,
   };
 };

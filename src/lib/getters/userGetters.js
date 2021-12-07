@@ -11,31 +11,41 @@ import {
   getProductReviews,
   addProductReviews,
   updateWishlist,
+  getUserInfo,
 } from "../../firebase/actions";
+//import analytics
+import {
+  logAddInfoEvent,
+  logLoginEvent,
+  logRegisterEvent,
+  logSetOrderEvent,
+} from "../../firebase/analytics/events";
 
-async function loginUserGetter() {
-  const { userDispatch } = useUser();
-  let info = await loginUser(data);
-  if (info) {
-    userDispatch({ type: "LOGIN_USER", payload: info });
-  } else {
-    userDispatch({ type: "LOGIN_ERROR", payload: info });
+const loginUserGetter = async (payload) => {
+  try {
+    const user = await loginUser(payload);
+    logLoginEvent();
+    return user;
+  } catch (err) {
+    throw new Error(err.message);
   }
-}
+};
 
-async function signUpUserGetter() {
-  const { userDispatch } = useUser();
-  let info = await signUpUser(data);
-  if (info) {
-    userDispatch({ type: "SIGNUP_USER", payload: info });
-  } else {
-    userDispatch({ type: "SIGNUP_ERROR", payload: info });
+const signUpUserGetter = async (payload) => {
+  try {
+    const userCredential = await signUpUser(payload);
+    logRegisterEvent();
+    const user = await getUserInfo(userCredential.user.uid);
+    return { user, userCredential };
+  } catch (err) {
+    throw new Error(err.message);
   }
-}
+};
 
 const facebookLoginGetter = async () => {
   return facebookLogin()
     .then((res) => {
+      logLoginEvent();
       return res;
     })
     .catch((err) => {
@@ -46,6 +56,7 @@ const facebookLoginGetter = async () => {
 const googleLoginGetter = async () => {
   return googleLogin()
     .then((res) => {
+      logLoginEvent();
       return res;
     })
     .catch((err) => {
@@ -65,7 +76,9 @@ const checkUserGetter = async (payload) => {
 const getUserInfoGetter = async () => {};
 
 const putOrderGetter = async (uid, payload) => {
-  return putOrder(uid, payload);
+  return putOrder(uid, payload).then(() => {
+    logSetOrderEvent();
+  });
 };
 
 const getOrdersGetter = async (uid) => {
@@ -80,10 +93,13 @@ const getOrdersGetter = async (uid) => {
     });
 };
 
-const updateUserInfoGetter = async (uid, payload) => {
+const updateUserInfoGetter = async (loggedIn, uid, payload) => {
   try {
-    let user = await updateUserInfo(uid, payload);
-    return user;
+    if (loggedIn) {
+      logAddInfoEvent();
+      let user = await updateUserInfo(uid, payload);
+      return user;
+    }
   } catch (err) {
     throw err;
   }
@@ -107,9 +123,11 @@ const addProductReviewsGetter = async (id, payload) => {
   }
 };
 
-const updateWishlistGetter = async (uid, payload) => {
+const updateWishlistGetter = async (loggedIn, uid, payload) => {
   try {
-    await updateWishlist(uid, payload);
+    if (loggedIn) {
+      await updateWishlist(uid, payload);
+    }
   } catch (err) {
     throw err;
   }

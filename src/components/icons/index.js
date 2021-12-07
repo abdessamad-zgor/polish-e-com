@@ -5,6 +5,7 @@ import Hearticon from "./Hearticon";
 import CartAddIcon from "./CartAddIcon";
 import Barsicon from "./Barsicon";
 import Crossicon from "./Crossicon";
+import Filtericon from "./Filtericon";
 
 export {
   Crossicon,
@@ -14,4 +15,5 @@ export {
   Hearticon,
   CartAddIcon,
   Barsicon,
+  Filtericon,
 };

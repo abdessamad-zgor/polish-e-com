@@ -11,22 +11,29 @@
   border: 0.1em solid rgba(128, 128, 128, 0.089);
   box-shadow: 0.1em 0.1em 0.5em 0.1em rgba(0, 0, 0, 0.1);
   border-radius: 1em;
+  position: relative;
   padding: 1em;
   background-color: white;
-  @extend .stretch;
+  display: flex;
 }
 
 .avatar {
-  width: 30%;
+  width: 20%;
+  position: relative;
 }
 
 .avatarImg {
-  width: 4em;
-  height: 4em;
+  display: inline-block;
+  border: 0.1em solid rgba(33, 33, 33, 0.493);
+  position: absolute;
+  width: 7em;
+  height: 7em;
+  top: 2em;
+  left: 2em;
   border-radius: 50%;
 }
 .address {
-  width: 70%;
+  width: 80%;
 }
 
 .title {

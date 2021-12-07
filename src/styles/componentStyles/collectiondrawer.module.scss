@@ -1,0 +1,34 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 0.3em;
+  padding: 0.3em;
+  margin: 0.2em;
+  border: 0.1em solid rgba(151, 151, 151, 0.158);
+}
+
+.item {
+  width: 100%;
+  margin: 0.1em;
+  border-radius: 0.5em;
+  padding: 0.6em 1em;
+  background-color: rgba(255, 177, 81, 0.144);
+  color: rgba(0, 0, 0, 0.863);
+  transition: 0.2s all;
+}
+
+.selected {
+  @extend .item;
+  transition: 0.2s all;
+  transform-origin: 50% 50%;
+  width: 110%;
+  transform: scaleY(1.2);
+  color: white;
+  background-color: rgba(255, 177, 81);
+}

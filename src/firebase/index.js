@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
+import "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCSCM_FIH_KhQuL7PlZ9giJI75gmFoPFB8",
@@ -13,6 +14,7 @@ const firebaseConfig = {
 };
 
 const app = firebase.initializeApp(firebaseConfig, "polish");
+export const analytics = app.analytics();
 
 export default app;
 export const db = app.firestore();

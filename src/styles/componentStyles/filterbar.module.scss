@@ -1,0 +1,36 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  border: 0.1em solid rgba(153, 153, 153, 0.13);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.range {
+  width: 23%;
+  margin: 00.3em;
+}
+
+.input {
+  border: 0.1em solid rgba(128, 128, 128, 0.466);
+  border-radius: 0.5em;
+
+  padding: 0.5em;
+  width: 100%;
+}
+
+.select {
+  width: 25%;
+  margin: 00.3em;
+}
+
+.title {
+  margin: 00.3em;
+}

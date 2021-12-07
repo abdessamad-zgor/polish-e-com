@@ -1,12 +1,15 @@
 import React from "react";
 import styles from "../../styles/componentStyles/shippingaddress.module";
+import { shippingAddressLG } from "../logic/shippingAddress.lg";
 
-function ShippingAddress({ onClick, address, OnChangeValue }) {
+function ShippingAddress({ forOrders }) {
+  const { saveAddress, putOrderClick, address, OnChangeValue } =
+    shippingAddressLG();
   return (
     <div className={styles.root}>
       <div className={styles.form}>
         <div className={styles.formRow}>
-          <label className="grey alt-font small" htmlFor="">
+          <label className={styles.label} htmlFor="">
             Full Name
           </label>
           <input
@@ -21,7 +24,7 @@ function ShippingAddress({ onClick, address, OnChangeValue }) {
         <div className={styles.formRow}>
           <div style={{ width: "30%", display: "inline-block" }}>
             {/* convert to select drop down */}
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               city
             </label>
             <input
@@ -33,7 +36,7 @@ function ShippingAddress({ onClick, address, OnChangeValue }) {
             />
           </div>
           <div style={{ width: "69%", display: "inline-block" }}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Street Address
             </label>
             <input
@@ -47,7 +50,7 @@ function ShippingAddress({ onClick, address, OnChangeValue }) {
         </div>
 
         <div className={styles.formRow}>
-          <label className="grey alt-font small" htmlFor="">
+          <label className={styles.label} htmlFor="">
             Confirmation phone
           </label>
           <input
@@ -60,7 +63,17 @@ function ShippingAddress({ onClick, address, OnChangeValue }) {
         </div>
         <div className={styles.footer}>
           <div className="grow"></div>
-          <button onClick={onClick}>Save</button>
+
+          <button className={styles.btn} onClick={saveAddress}>
+            Save
+          </button>
+          {forOrders ? (
+            <button className={styles.btnAlt} onClick={putOrderClick}>
+              Send
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

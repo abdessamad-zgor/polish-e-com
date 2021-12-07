@@ -1,0 +1,27 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  padding: 0.5em;
+}
+
+.slideImg {
+  width: 100%;
+  height: 7em;
+  border-radius: 00.2em;
+  margin: 0.1em;
+  border: 0.1em solid rgba(128, 128, 128, 0.233);
+  transition: all 0.5s;
+}
+
+.imageInView {
+  width: 100%;
+  height: 7em;
+  border-radius: 00.2em;
+  margin: 0.1em;
+  transform: scale(1.05);
+  transition: all 0.2s;
+  border: 0.1em solid $primary-color;
+}

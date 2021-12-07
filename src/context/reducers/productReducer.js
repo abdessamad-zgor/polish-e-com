@@ -45,6 +45,39 @@ function productReducer(state, action) {
           reviews: [...state.inView.review, action.payload],
         },
       };
+    case "SET_FILTERS":
+      return {
+        ...state,
+        filter: action.payload,
+      };
+    case "APPLY_FILTERS":
+      let results = state.all.filter(
+        (product) =>
+          product.title.toLowerCase().includes(state.filter.title) ||
+          // state.filter.categories.every((category) =>
+          //   product.categories.includes(category)
+          // ) ||
+          // state.filter.attributes.every((attribute) =>
+          //   product.attributes.includes(attribute)
+          // ) &&
+          product.price < parseInt(state.filter.price)
+      );
+
+      console.log(results);
+
+      return {
+        ...state,
+        results: results,
+      };
+    case "FILTER_PRODUCTS":
+      let resultsFiltered = state.all.filter((product) =>
+        product.categories.includes(action.payload)
+      );
+      return {
+        ...state,
+        results: resultsFiltered,
+      };
+
     default:
       return state;
   }

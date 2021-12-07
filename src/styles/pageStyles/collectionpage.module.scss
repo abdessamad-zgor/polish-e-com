@@ -1,0 +1,22 @@
+@import "../classes";
+@import "../config";
+@import "../utils";
+
+.root {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+
+  justify-content: center;
+}
+
+.drawer {
+  width: 20%;
+}
+
+.listing {
+  width: 80%;
+  padding: 0.5em 3em;
+}

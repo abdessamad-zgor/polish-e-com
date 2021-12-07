@@ -7,10 +7,10 @@
 }
 
 .card {
-  border: 0.1em solid rgba(128, 128, 128, 0.082);
-  box-shadow: 0.1em 0.1em 0.3em 0.1em rgba(0, 0, 0, 0.082);
+  border: 0.1em solid rgba(128, 128, 128, 0.089);
+  box-shadow: none;
   margin: 0.5em;
+  border-radius: 1em;
   width: 98%;
-  padding: 0.5em;
-  border-radius: 0.2em;
+  padding: 1em;
 }

@@ -1,39 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "../../styles/componentStyles/authform.module";
-import { useUser } from "../../context";
-import { signUpUser, loginUser } from "../../firebase/actions";
+import { useLogic } from "../logic/authform.lg";
 
-function AuthForm({ type }) {
-  const [authType, setAuthType] = useState("register");
-  const { userDispatch } = useUser();
-  const [info, setInfo] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-  });
-
-  const OnChangeValue = (e) => {
-    setInfo({ ...info, [e.target.name]: e.target.value });
-  };
-
+function AuthForm() {
+  const {
+    registerClick,
+    loginClick,
+    info,
+    OnChangeValue,
+    authType,
+    changeAuthType,
+  } = useLogic();
   return (
     <div className={styles.root}>
       <div className={styles.header}>
         <button
+          name="register"
           className={
             authType == "register" ? styles.authTypeActive : styles.authType
           }
-          onClick={() => setAuthType("register")}
+          onClick={changeAuthType}
         >
           Register
         </button>
         <button
+          name="login"
           className={
             authType == "login" ? styles.authTypeActive : styles.authType
           }
-          onClick={() => setAuthType("login")}
+          onClick={changeAuthType}
         >
           Login
         </button>
@@ -41,10 +36,11 @@ function AuthForm({ type }) {
       {authType == "register" ? (
         <div className={styles.form}>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Full Name
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="fullName"
               type="text"
@@ -52,10 +48,11 @@ function AuthForm({ type }) {
             />
           </div>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Email
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="email"
               type="text"
@@ -63,10 +60,11 @@ function AuthForm({ type }) {
             />
           </div>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Phone Number
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="phone"
               type="text"
@@ -74,10 +72,11 @@ function AuthForm({ type }) {
             />
           </div>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Password
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="password"
               type="password"
@@ -85,31 +84,29 @@ function AuthForm({ type }) {
             />
           </div>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Confirm Password
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="confirmPassword"
               type="password"
               value={info.confirmPassword}
             />
           </div>
-          <button
-            onClick={() => {
-              userDispatch({ type: "REGISTER_USER", payload: info });
-            }}
-          >
+          <button className={styles.btn} onClick={registerClick}>
             Submit
           </button>
         </div>
       ) : (
         <div className={styles.form}>
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Email
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="email"
               type="text"
@@ -118,21 +115,18 @@ function AuthForm({ type }) {
           </div>
 
           <div className={styles.formRow}>
-            <label className="grey alt-font small" htmlFor="">
+            <label className={styles.label} htmlFor="">
               Password
             </label>
             <input
+              className={styles.input}
               onChange={OnChangeValue}
               name="password"
               type="password"
               value={info.password}
             />
           </div>
-          <button
-            onClick={() => {
-              userDispatch({ type: "LOGIN_USER", payload: info });
-            }}
-          >
+          <button className={styles.btn} onClick={loginClick}>
             GO
           </button>
         </div>

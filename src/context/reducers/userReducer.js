@@ -1,38 +1,41 @@
+import { cartInit } from "../states";
+
 function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN_USER":
-      // const user = loginUser(action.payload).then(() => {
-      //   db.collection("users")
-      //     .where("email", "==", `${action.payload.email}`)
-      //     .get()
-      //     .then((snapshot) => {
-      //       snapshot.forEach((user) => {
-      //         state.loggedIn = true;
-      //         state.user = { ...user.data(), id: user.id };
-      //       });
-      //       console.log(snapshot);
-      //     });
-      // });
-      // if (user) {
-      //   return state;
-      // } else {
-      //   state.loggedIn = false;
-      //   state.user = {};
-      //   return state;
-      // }
-      state.pending = false;
-      state.loggedIn = true;
-      state.info = action.payload.user;
-      return state;
+      return {
+        ...state,
+        loggedIn: true,
+        info: {
+          fullName: action.payload.fullName,
+          email: action.payload.email,
+          phone: action.payload.phoneNumber,
+          uid: action.payload.uid,
+          address: action.payload.address,
+        },
+      };
+    case "LOGIN_USER_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+      };
+
     case "SIGNUP_USER":
-    // const userCreate = signUpUser(action.payload);
-    // if (userCreate) {
-    //   (state.loggedIn = true), (state.user = action.payload);
-    //   return state;
-    // } else {
-    //   (state.loggedIn = true), (state.user = {});
-    //   return state;
-    // }
+      return {
+        ...state,
+        loggedIn: true,
+        info: {
+          fullName: action.payload.user.fullName,
+          email: action.payload.user.email,
+          phone: action.payload.user.phoneNumber,
+          uid: action.payload.user.uid,
+        },
+      };
+    case "SIGNUP_USER_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+      };
     case "FACEBOOK_LOGIN_INIT":
       state.pending = true;
       state.error = null;
@@ -40,26 +43,17 @@ function userReducer(state, action) {
       return state;
 
     case "FACEBOOK_LOGIN":
-      // facebookLogin().then((results) => {
-      //   //error getting access token from facebook,
-      //   state.loggedIn = true;
-      //   state.user.fullName = results.user.profile.name;
-      //   state.user.email = results.user.profile.email;
-      //   state.user.id = results.user.profile.id;
-      //   state.token = results.credential.accessToken;
-      // });
-
-      // return state;
-      console.log(action.payload);
-
-      state.pending = false;
-      state.loggedIn = true;
-      state.info.fullName = action.payload.additionalUserInfo.profile.name;
-      state.info.uid = action.payload.user.uid;
-      state.info.email = action.payload.additionalUserInfo.profile.email;
-      state.error = null;
-
-      return state;
+      return {
+        ...state,
+        pending: false,
+        loggedIn: true,
+        info: {
+          fullName: action.payload.additionalUserInfo.profile.name,
+          uid: action.payload.user.uid,
+          email: action.payload.additionalUserInfo.profile.email,
+          avatar: action.payload.additionalUserInfo.profile.picture.data.url,
+        },
+      };
 
     case "FACEBOOK_LOGIN_ERROR":
       state.pending = false;
@@ -77,17 +71,15 @@ function userReducer(state, action) {
       return state;
 
     case "GOOGLE_LOGIN":
-      // googleLogin().then((results) => {
-      //   console.log(results);
-      // });
-      // return state;
-      state.pending = false;
-      state.loggedIn = true;
-      state.error = null;
-      state.info.fullName = action.payload.additionalUserInfo.profile.name;
-
-      console.log(action.payload);
-      return state;
+      return {
+        ...state,
+        loggedIn: true,
+        pending: false,
+        error: null,
+        info: {
+          fullName: action.payload.additionalUserInfo.profile.name,
+        },
+      };
 
     case "GOOGLE_LOGIN_ERROR":
       state.pending = false;
@@ -103,9 +95,21 @@ function userReducer(state, action) {
     case "GET_ORDERS_ERROR":
       state.error = action.payload;
       return state;
-    case "PUT_ORDERS":
-      state.error = null;
-      return state;
+    case "PUT_ORDER":
+      return {
+        ...state,
+        orders: [
+          ...state.orders,
+          {
+            forClient: {
+              fullName: action.payload.user.fullName,
+              email: action.payload.user.email,
+            },
+            products: action.payload.cart,
+            toAddress: action.payload.address,
+          },
+        ],
+      };
 
     case "UPDATE_USER_INFO":
       state.info.fullName =
@@ -116,11 +120,11 @@ function userReducer(state, action) {
         action.payload.email != "" || action.payload.email
           ? action.payload.email
           : state.info.email;
-      state.info.shippingAddress =
-        action.payload.shippingAddress ||
-        action.payload.shippingAddress != {} ||
-        state.info.shippingAddress == undefined
-          ? action.payload.shippingAddress
+      state.info.address =
+        action.payload.address ||
+        action.payload.address != {} ||
+        state.info.address != undefined
+          ? action.payload.address
           : {};
       return state;
 
@@ -140,25 +144,34 @@ function userReducer(state, action) {
       return state;
 
     case "SIGN_OUT":
-      state.user = {
-        fullName: "stranger",
+      return {
+        ...state,
+        loggedIn: false,
+        orders: [],
+        wishlist: [],
+        info: {
+          fullName: "strange",
+        },
       };
-      state.loggedIn = false;
-      return state;
     case "ADD_TO_WISHLIST":
       if (
         state.wishlist.filter((product) => action.payload.id == product.id)
           .length > 0
       ) {
-        console.log(action.payload);
         return state;
       }
-      console.log(action.payload);
       return {
         ...state,
         wishlist: [...state.wishlist, action.payload],
       };
-
+    case "SAVE_ADDRESS":
+      return {
+        ...state,
+        info: {
+          ...state.info,
+          address: action.payload,
+        },
+      };
     default:
       return state;
   }

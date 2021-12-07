@@ -40,9 +40,26 @@
   padding: 0.3em;
 }
 
-.footer {
-  width: 100%;
-  float: inline-end;
+.btn {
+  background-color: rgba(255, 153, 37, 0.967);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  position: absolute;
+
+  text-transform: uppercase;
+  left: 5em;
+  right: 5em;
+  bottom: 1em;
+  text-decoration: none;
+  color: white;
+  @extend .dfl-font;
+  &:hover {
+    color: rgba(255, 153, 37, 0.967);
+    box-shadow: 0.1em 0.1em 0.3em 0.4em rgba(255, 186, 107, 0.123);
+    border: 0.1em solid rgba(255, 153, 37, 0.967);
+    background-color: rgba(255, 153, 37, 0);
+  }
 }
 
 .checkout {

@@ -1,0 +1,29 @@
+@import "../classes";
+@import "../config";
+@import "../animations";
+
+.root {
+  width: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: 0.1em solid rgba(128, 128, 128, 0.089);
+  background-color: rgba(255, 248, 240, 0.275);
+  padding-inline: 1em;
+}
+
+.item {
+  color: rgb(80, 80, 80);
+  padding-block: 0.5em;
+  text-align: center;
+  font-family: $dfl-font;
+  flex: 1;
+  transition: 0.2s all;
+  &:hover {
+    background-color: rgb(255, 177, 81);
+    color: white;
+
+    transform: scale(1.2);
+  }
+}

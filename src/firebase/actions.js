@@ -1,4 +1,4 @@
-import { db, auth } from "./index";
+import { db, auth, analytics } from "./index";
 import firebase from "firebase";
 
 const getAllProducts = async function () {
@@ -39,6 +39,7 @@ const addProductReviews = async function (author, review, id) {
     .doc()
     .set({
       userName: author.fullName,
+      avatar: author.avatar || "",
       review: review,
       publishedAt: date,
     })
@@ -60,33 +61,38 @@ const addProductReviews = async function (author, review, id) {
     });
 };
 
-const getUserInfo = async function (loggedIn) {
-  const snapshotRef = await db.collection("users").doc(id).get();
+const getUserInfo = async function (id) {
+  console.log("user");
+  const userRef = db.collection("users").doc(id);
+  return userRef.get().then((snapshot) => {
+    let user = snapshot.data();
+    return user;
+  });
 };
 
 const signUpUser = async function (data) {
   return auth
     .createUserWithEmailAndPassword(data.email, data.password)
-    .then((res) => {
-      db.collection("users")
-        .doc(res.user.uid)
-        .set({
-          fullName: data.fullName,
-          phoneNumber: data.phone,
-          email: data.email,
-        })
-        .then((value) => {
-          return value;
-        });
+    .then((result) => {
+      db.collection("users").doc(result.user.uid).set({
+        uid: result.user.uid,
+        fullName: data.fullName,
+        email: data.email,
+        phoneNumber: data.phone,
+      });
+      console.log(result);
+      return result;
+    })
+    .catch((err) => {
+      throw new Error(err.message);
     });
 };
 const loginUser = async function (data) {
-  const userToken = await auth.signInWithEmailAndPassword(
-    data.email,
-    data.password
-  );
-
-  return userToken;
+  return auth
+    .signInWithEmailAndPassword(data.email, data.password)
+    .then((UserCredential) => {
+      return getUserInfo(UserCredential.user.uid);
+    });
 };
 
 //Facebook-login: create FacebookAuthProvider instance and return a promise with the signInWithPop results
@@ -152,9 +158,7 @@ const putOrder = async (uid, payload) => {
     .doc()
     .set({
       status: "pending",
-      products: payload.cart.products,
-      orderedBy: { fullName: payload.user.fullName, email: payload.user.email },
-      shippingAddress: payload.address,
+      ...payload,
     })
     .then()
     .catch((err) => {
@@ -168,15 +172,12 @@ const updateUserInfo = async (uid, payload) => {
   return userRef
     .get()
     .then((doc) => {
-      console.log(doc.data() !== payload);
-      console.log(payload);
       if (doc.data() !== payload) {
         console.log("userInfo is not up to date");
         return userRef
           .set(payload)
           .then(async () => {
             return userRef.get().then((doc) => {
-              console.log(doc.data());
               return doc.data();
             });
           })
@@ -211,6 +212,19 @@ const updateWishlist = async (uid, payload) => {
     });
 };
 
+const getAllCategories = async () => {
+  return db
+    .collection("products")
+    .doc("categories")
+    .get()
+    .then((snapshot) => {
+      return snapshot.data().values;
+    })
+    .catch((err) => {
+      throw new Error(err.message);
+    });
+};
+
 export {
   getAllProducts,
   getOrders,
@@ -225,4 +239,5 @@ export {
   googleLogin,
   updateUserInfo,
   updateWishlist,
+  getAllCategories,
 };
